@@ -36,12 +36,7 @@ public abstract class AbstractDao extends NamedParameterJdbcDaoSupport implement
         this.queryProps = queryProps;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.gmi.stars.dao.IGmiStarsCommonDao#getResults(java.lang.String)
-     */
-    public SqlRowSet getResults(String sqlQuery) throws DaoOperationException {
+     public SqlRowSet getResults(String sqlQuery) throws DaoOperationException {
         try {
             return this.getJdbcTemplate().queryForRowSet(sqlQuery);
         } catch (DataAccessException exception) {

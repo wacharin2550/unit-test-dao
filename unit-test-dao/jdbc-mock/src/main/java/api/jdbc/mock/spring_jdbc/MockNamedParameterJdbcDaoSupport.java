@@ -3,6 +3,7 @@ package api.jdbc.mock.spring_jdbc;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -23,28 +24,22 @@ public class MockNamedParameterJdbcDaoSupport<T extends NamedParameterJdbcDaoSup
 	
 	private T dao;
 	
-    @Mock
-    private Connection connection;
-    
-    @Mock
-    private DataSource datasource;
-
-    @Mock 
-    private PreparedStatement preparedStatement;
-    
-    @Mock
-    private NamedParameterJdbcTemplate jdbcTemplateMock;
+    @Mock private Connection connection;
+    @Mock private DataSource datasource;
+    @Mock private Statement statement;
+    @Mock private PreparedStatement preparedStatement;
+    @Mock private NamedParameterJdbcTemplate jdbcTemplateMock;
 	
 	public MockNamedParameterJdbcDaoSupport(T dao) throws SQLException, ReflectionException{
 		super();
 		
 		this.dao = dao;
 		
-		MockitoAnnotations.initMocks(this);
-		
+		MockitoAnnotations.initMocks(this);		
 		dao.setDataSource(datasource);
 		
 		Mockito.when(connection.prepareStatement(Mockito.anyString())).thenReturn(preparedStatement);
+		Mockito.when(connection.createStatement()).thenReturn(statement);
         Mockito.when(datasource.getConnection()).thenReturn(connection);
 	}
 	
@@ -57,6 +52,7 @@ public class MockNamedParameterJdbcDaoSupport<T extends NamedParameterJdbcDaoSup
 	
 	public void setResultSetData(ConcreteMockedResultSet resultSet) throws SQLException{
 		Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
+		Mockito.when(statement.executeQuery(Mockito.anyString())).thenReturn(resultSet);
 	}
 	
 }

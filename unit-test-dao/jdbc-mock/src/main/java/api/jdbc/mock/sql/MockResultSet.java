@@ -188,8 +188,8 @@ public class MockResultSet implements ResultSet {
     }
 
     public ResultSetMetaData getMetaData() throws SQLException {
-
-        return null;
+    	ResultSetMetaData metaData = new MockResultSetMetaData();	
+        return metaData;
     }
 
     public Object getObject(int columnIndex) throws SQLException {

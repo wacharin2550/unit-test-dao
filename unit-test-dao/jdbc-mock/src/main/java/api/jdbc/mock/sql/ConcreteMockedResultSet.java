@@ -12,9 +12,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 
 public class ConcreteMockedResultSet extends MockResultSet{
-    /**
-     * The date format for parsing a date from a CSV file.
-     */
+    // The date format for parsing a date from a CSV file.
     private static final String DATE_FORMAT = "dd-MMM-yy";
 
     private static final ThreadLocal<DateFormat> THREAD_LOCAL_DATEFORMAT = new ThreadLocal<DateFormat>() {
@@ -24,25 +22,22 @@ public class ConcreteMockedResultSet extends MockResultSet{
             }
     };
 
-    /** Column name 2 column value. */
+    // Column name 2 column value.
     private Collection<LinkedHashMap<String, String>> dummyData;
 
-    /** Iterator of dummyData. */
+    // Iterator of dummyData.
     private Iterator<LinkedHashMap<String, String>> resultIterator;
 
-    /** The current value of the iterator. */
+    // The current value of the iterator. 
     private LinkedHashMap<String, String> currentEntry;
 
     private final String tableName;
 
     /**
-     * Constructs a new {@link CSVResultSet}.
+     * Constructs a new CSVResultSet.
      * 
-     * @param tableName
-     *            the name of the table this {@link CSVResultSet} stands for.
-     * 
-     * @param entries
-     *            Collection of entries from the CSV file. Each {@link LinkedHashMap} maps column name to column value.
+     * @param tableName the name of the table this CSVResultSet stands for.
+     * @param entries Collection of entries from the CSV file. Each LinkedHashMap maps column name to column value.
      */
     public ConcreteMockedResultSet(String tableName, Collection<LinkedHashMap<String, String>> entries) {
             this.tableName = tableName;
@@ -56,7 +51,6 @@ public class ConcreteMockedResultSet extends MockResultSet{
                     currentEntry = resultIterator.next();
                     return true;
             }
-
             return false;
     }
 
@@ -154,10 +148,8 @@ public class ConcreteMockedResultSet extends MockResultSet{
             String[] columns = currentEntry.keySet().toArray(new String[0]);
 
             if (columnIndex > columns.length) {
-                    String message = MessageFormat.format(
-                                    "Column index {0} does not exist in table file ''{1}'' (type ''{2}'')", columnIndex, tableName,
-                                    clazz);
-                    throw new SQLException(message);
+               String message = MessageFormat.format("Column index {0} does not exist in table file ''{1}'' (type ''{2}'')", columnIndex, tableName, clazz);
+               throw new SQLException(message);
             }
 
             String key = columns[columnIndex - 1];
@@ -167,9 +159,8 @@ public class ConcreteMockedResultSet extends MockResultSet{
 
     private String getValueForColumnLabel(String columnLabel, Class<?> clazz) throws SQLException {
             if (!currentEntry.containsKey(columnLabel.toUpperCase())) {
-                    String message = MessageFormat.format("Column ''{0}'' does not exist in table file ''{1}'' (type ''{2}'')",
-                                    columnLabel, tableName, clazz);
-                    throw new SQLException(message);
+                 String message = MessageFormat.format("Column ''{0}'' does not exist in table file ''{1}'' (type ''{2}'')", columnLabel, tableName, clazz);
+                 throw new SQLException(message);
             }
 
             return currentEntry.get(columnLabel.toUpperCase());

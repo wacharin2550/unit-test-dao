@@ -2,16 +2,17 @@ package example.java.dao.tdd.dao;
 
 import java.util.Map;
 
+import org.springframework.jdbc.support.rowset.SqlRowSet;
+
 import example.java.dao.tdd.exception.DaoOperationException;
 import example.java.dao.tdd.model.data.Book;
 import example.java.dao.tdd.row.mapper.BookRowMapper;
 
 public class ConcreteDao extends AbstractDao {
-	private static final String GET_BOOK_QUERY = "getBookQuery";
 
-	public Map<String, Book> getBookData(Map<String, Object> sqlQueryParameters)
+	public Map<String, Book> getSelectQueryModelMap(String query, Map<String, Object> sqlQueryParameters)
 			throws DaoOperationException {
-		String sqlQuery = getQueryProps().getProperty(GET_BOOK_QUERY);
+		String sqlQuery = getQueryProps().getProperty(query);
 
 		BookRowMapper mapper = new BookRowMapper();
 
@@ -19,6 +20,13 @@ public class ConcreteDao extends AbstractDao {
 		Map<String, Book> dataList = mapper.getBookMap();
 
 		return dataList;
+	}
+	
+	public SqlRowSet getSelectQueryResultSet(String query)
+			throws DaoOperationException {
+		String sqlQuery = getQueryProps().getProperty(query);
+
+		return getResults(sqlQuery);
 	}
 
 }
