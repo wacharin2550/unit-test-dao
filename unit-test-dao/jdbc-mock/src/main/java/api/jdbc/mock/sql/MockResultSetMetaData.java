@@ -20,7 +20,7 @@ public class MockResultSetMetaData implements ResultSetMetaData {
 	@Override
 	public int getColumnCount() throws SQLException {
 		// TODO Auto-generated method stub
-		return 2;
+		return 1;
 	}
 
 	@Override

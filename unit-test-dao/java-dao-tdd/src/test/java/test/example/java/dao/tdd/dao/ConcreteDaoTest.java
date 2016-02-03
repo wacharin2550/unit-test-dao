@@ -5,9 +5,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Properties;
-import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -41,7 +39,7 @@ public class ConcreteDaoTest {
 		Assert.assertNotNull(mockObject);
 	}
 	
-	//@Test
+	@Test
 	public void simpleSelectQueryTest() throws UnexpectedInputException, ParseException, Exception{
 		LinkedList<LinkedHashMap<String, String>> expectedData = ResultSetData.getBookResultSet(context);
 		ConcreteMockedResultSet resultSet = new ConcreteMockedResultSet("BookData", expectedData);
@@ -60,7 +58,6 @@ public class ConcreteDaoTest {
 		LinkedList<LinkedHashMap<String, String>> expectedData = ResultSetData.getBookResultSet(context);
 		ConcreteMockedResultSet resultSet = new ConcreteMockedResultSet("BookData", expectedData);
 		mockObject.setResultSetData(resultSet);
-		
 		
 		SqlRowSet rowSet  = concreteDao.getSelectQueryResultSet(GET_BOOK_QUERY);
         Assert.assertNotNull(rowSet);

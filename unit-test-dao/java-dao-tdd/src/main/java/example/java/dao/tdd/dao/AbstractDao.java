@@ -44,11 +44,6 @@ public abstract class AbstractDao extends NamedParameterJdbcDaoSupport implement
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.gmi.stars.dao.IStarsCommonDao#getResults(java.lang.String, org.springframework.jdbc.core.RowMapper)
-     */
     public <T> List<T> getResults(String sqlQuery, RowMapper<T> rowMapper, MapSqlParameterSource parameters)
             throws DaoOperationException {
         try {
@@ -58,12 +53,6 @@ public abstract class AbstractDao extends NamedParameterJdbcDaoSupport implement
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.gmi.stars.dao.IStarsCommonDao#getResults(java.lang.String, org.springframework.jdbc.core.RowMapper,
-     * java.util.Map)
-     */
     public <T> List<T> getResults(String sqlQuery, RowMapper<T> rowMapper, Map<String, Object> map)
             throws DaoOperationException {
         try {
@@ -73,12 +62,6 @@ public abstract class AbstractDao extends NamedParameterJdbcDaoSupport implement
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.gmi.stars.data.dao.IGmiStarsCommonDao#getObject(java.lang.String,
-     * org.springframework.jdbc.core.RowMapper, java.util.Map)
-     */
     public <T> T getObject(String sqlQuery, RowMapper<T> rowMapper, Map<String, Object> map)
             throws DaoOperationException {
         try {
@@ -88,16 +71,6 @@ public abstract class AbstractDao extends NamedParameterJdbcDaoSupport implement
         }
     }
     
-    /**
-     * Gets the object from query.
-     *
-     * @param <T> the generic type
-     * @param sqlQuery the sql query
-     * @param rowMapper the row mapper
-     * @param map the map
-     * @return the object from query
-     * @throws DaoOperationException the gmi stars dao operation exception
-     */
     public <T> T getObjectFromQuery(String sqlQuery, RowMapper<T> rowMapper, Map<String, Object> map)
             throws DaoOperationException {
         try {
@@ -111,11 +84,6 @@ public abstract class AbstractDao extends NamedParameterJdbcDaoSupport implement
         return null;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.gmi.stars.dao.IStarsCommonDao#update(java.lang.String, java.lang.Object[])
-     */
     public int update(String sqlQuery, Object[] args) throws DaoOperationException {
         try {
             return this.getJdbcTemplate().update(sqlQuery, args);
@@ -124,11 +92,6 @@ public abstract class AbstractDao extends NamedParameterJdbcDaoSupport implement
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.gmi.stars.dao.IStarsCommonDao#update(java.lang.String, java.lang.Object[], int[])
-     */
     public int update(String sqlQuery, Object[] args, int[] types) throws DaoOperationException {
         try {
             return this.getJdbcTemplate().update(sqlQuery, args, types);
@@ -137,11 +100,6 @@ public abstract class AbstractDao extends NamedParameterJdbcDaoSupport implement
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.gmi.stars.dao.IStarsCommonDao#update(java.lang.String)
-     */
     public int update(String sqlQuery) throws DaoOperationException {
         try {
             int output = this.getJdbcTemplate().update(sqlQuery);
@@ -155,12 +113,6 @@ public abstract class AbstractDao extends NamedParameterJdbcDaoSupport implement
 
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.gmi.stars.dao.IStarsCommonDao#batchUpdate(java.lang.String,
-     * org.springframework.jdbc.core.BatchPreparedStatementSetter)
-     */
     public int[] batchUpdate(String sqlQuery, BatchPreparedStatementSetter pss) throws DaoOperationException {
         try {
             

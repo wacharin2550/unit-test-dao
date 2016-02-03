@@ -17,11 +17,6 @@ public class BookRowMapper implements ParameterizedRowMapper<Book> {
         this.bookDataMap = new LinkedHashMap<String, Book>();
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.springframework.jdbc.core.RowMapper#mapRow(java.sql.ResultSet, int)
-     */
     public Book mapRow(ResultSet rs, int rowNum) throws SQLException {
     	Book book = new Book();
 
@@ -34,11 +29,6 @@ public class BookRowMapper implements ParameterizedRowMapper<Book> {
         return book;
     }
 
-    /**
-     * Gets the target price estimates.
-     *
-     * @return the target price estimates
-     */
     public Map<String, Book> getBookMap() {
         return bookDataMap;
     }
